@@ -197,7 +197,6 @@ def main():
         snake.draw()
 
         handle_keys(snake)
-        change_speed()
 
         pygame.display.update()
 
