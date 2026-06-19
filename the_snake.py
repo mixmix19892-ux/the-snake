@@ -64,9 +64,10 @@ class Apple(GameObject):
     def randomize_position(self, occupied_positions):
         """Рандомизировать позицию яблока"""
         while True:
-            self.position = \
-                ((randint(0, GRID_WIDTH) * GRID_SIZE) % SCREEN_WIDTH,
-                 (randint(0, GRID_HEIGHT) * GRID_SIZE) % SCREEN_HEIGHT)
+            self.position = (
+                (randint(0, GRID_WIDTH) * GRID_SIZE) % SCREEN_WIDTH,
+                (randint(0, GRID_HEIGHT) * GRID_SIZE) % SCREEN_HEIGHT
+            )
 
             if self.position not in occupied_positions:
                 break
@@ -151,9 +152,7 @@ def handle_keys(game_object):
 
 def collision_check(position, position_list) -> bool:
     """Проверка коллизии координаты против списка координат"""
-    if position in position_list:
-        return True
-    return False
+    return position in position_list
 
 
 def main():
@@ -177,8 +176,10 @@ def main():
             apple.randomize_position(snake.positions)
 
         # Столкновение змейки с самой собой:
-        elif snake.length >= 5 and collision_check(snake.get_head_position(),
-                                                   snake.positions[1:]):
+        elif (
+            snake.length >= 5
+            and collision_check(snake.get_head_position(), snake.positions[1:])
+        ):
             snake.reset()
             apple.randomize_position(snake.positions)
 
