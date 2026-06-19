@@ -88,8 +88,8 @@ class Snake(GameObject):
 
     def move(self):
         """Метод отвечающий за движение змейки"""
-        hx, hy = self.get_head_position()
         dx, dy = self.direction
+        hx, hy = self.get_head_position()
         x_size = dx * GRID_SIZE
         y_size = dy * GRID_SIZE
 
@@ -105,7 +105,8 @@ class Snake(GameObject):
 
     def draw(self):
         """Метод отвечающий за отрисовку змейки"""
-        for position in self.positions:
+        # Отрисовка сегментов змейки
+        for position in self.positions[1:]:
             rect = pg.Rect(position, (GRID_SIZE, GRID_SIZE))
             pg.draw.rect(screen, self.body_color, rect)
             pg.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -121,7 +122,7 @@ class Snake(GameObject):
             self.last = None
 
     def get_head_position(self):
-        """Метод возсращающий координаты головы змейки"""
+        """Метод возвращающий координаты головы змейки"""
         return self.positions[0]
 
     def reset(self):
